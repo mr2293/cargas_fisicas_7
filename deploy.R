@@ -1,3 +1,7 @@
+if (requireNamespace("renv", quietly = TRUE)) {
+  renv::deactivate()
+}
+
 library(rsconnect)
 
 shiny_acc <- Sys.getenv("SHINY_ACC_NAME")
@@ -9,10 +13,6 @@ rsconnect::setAccountInfo(
   token  = shiny_token,
   secret = shiny_secret
 )
-
-if (requireNamespace("renv", quietly = TRUE)) {
-  renv::deactivate()
-}
 
 options(repos = c(CRAN = "https://cran.rstudio.com/"))
 
