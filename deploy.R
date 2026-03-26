@@ -16,8 +16,9 @@ rsconnect::setAccountInfo(
 
 options(repos = c(CRAN = "https://cran.rstudio.com/"))
 
-rsconnect::deployManifest(
-  manifestFile   = "manifest.json",
+rsconnect::deployApp(
+  appDir         = ".",
+  appFiles       = c("app.R", "cargas7.R", "data/Sessions_micro01.xlsx"),
   appName        = "cargas_fisicas_7",
   account        = shiny_acc,
   server         = "shinyapps.io",
