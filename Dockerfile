@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     libtiff5-dev \
     libv8-dev \
     g++ \
+    python3 \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /home/cargas_fisicas_7
