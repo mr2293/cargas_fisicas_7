@@ -1,19 +1,19 @@
-FROM rocker/shiny:4.5.1
+FROM rocker/shiny:4.5.2
 
 RUN apt-get update && apt-get install -y \
-    libcurl4-openssl-dev \
+    libcurl4-openssl-dev \                                                                                                                                                                                
     libssl-dev \
-    libxml2-dev \
-    libgit2-dev \
+    libxml2-dev \                                                                                                                                                                                         
+    libgit2-dev \                                                                                                                                                                                         
     libfontconfig1-dev \
-    libfreetype6-dev \
+    libfreetype6-dev \                                                                                                                                                                                    
     libpng-dev \
     libjpeg-dev \
     libtiff5-dev \
     libv8-dev \
-    g++ \
+    g++ \                                                                                                                                                                                                 
     python3 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* 
 
 WORKDIR /home/cargas_fisicas_7
 
@@ -23,7 +23,7 @@ COPY data data
 
 RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" && \
     R -e "renv::restore(prompt = FALSE)"
-
+    
 # Strip non-standard array fields from renv.lock so rsconnect can parse it
 RUN python3 - << 'EOF'
 import json
