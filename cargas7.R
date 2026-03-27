@@ -81,8 +81,15 @@ vel_max_lookup <- tibble::tribble(
   # "Álvaro Fidalgo",            33.50
 )
 
+selected_players <- c("Aarón Mejía", "Alan Cervantes", "Alejandro Zendejas", "Alexis Gutiérrez", "Brian Rodríguez",           
+                   "Cristian Borja", "Dagoberto Espinoza", "Erick Sánchez", "Henry Martín", "Isaías Violante",           
+                   "Israel Reyes", "Jonathan Dos Santos", "José Raúl Zúñiga", "Kevin Álvarez", "Miguel Vázquez",      
+                   "Néstor Araujo", "Patricio Salas", "Ramón Juárez", "Rodrigo Dourado", "Santiago Naveda",           
+                   "Sebastián Cáceres", "Víctor Dávila", "Raphael Veiga", "Vinícius Lima", "Thiago Espinosa")
+
 datos <- datos |>
   left_join(vel_max_lookup, by = "player") |>
+  filter(player %in% selected_players) |>
   filter(player != "Luis Ángel Malagón")
 
 # -------------------------------------------------------
