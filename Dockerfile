@@ -22,7 +22,8 @@ COPY app.R cargas7.R deploy.R ./
 COPY data data
 
 RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" && \
-    R -e "renv::restore(prompt = FALSE)"
+    R -e "renv::restore(prompt = FALSE)" && \
+    R -e "install.packages('rsconnect', repos='https://cloud.r-project.org')"
 
 # Strip non-standard array fields from renv.lock so rsconnect can parse it
 RUN python3 fix_lock.py
