@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1.4
 FROM rocker/shiny:4.5.2
 
 RUN apt-get update && apt-get install -y \
@@ -26,7 +25,7 @@ RUN R -e "install.packages('renv', repos='https://cloud.r-project.org')" && \
     R -e "renv::restore(prompt = FALSE)"
     
 # Strip non-standard array fields from renv.lock so rsconnect can parse it
-RUN python3 - << 'EOF'
+RUN python3 -c "
 import json
 with open('renv.lock') as f:
     lock = json.load(f)
@@ -37,6 +36,6 @@ for pkg in lock.get('Packages', {}).values():
             del pkg[k]
 with open('renv.lock', 'w') as f:
     json.dump(lock, f, indent=2)
-EOF
+"
 
 CMD ["Rscript", "deploy.R"]
